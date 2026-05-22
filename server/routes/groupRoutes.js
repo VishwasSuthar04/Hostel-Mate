@@ -1,0 +1,11 @@
+const router = require('express').Router()
+const auth = require('../middlewares/auth')
+const { getGroups, getGroup, createGroup, joinGroup, inviteMember, leaveGroup } = require('../controllers/groupController')
+router.use(auth)
+router.get('/', getGroups)
+router.get('/:id', getGroup)
+router.post('/', createGroup)
+router.post('/join', joinGroup)
+router.post('/:id/invite', inviteMember)
+router.post('/:id/leave', leaveGroup)
+module.exports = router

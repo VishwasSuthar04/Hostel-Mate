@@ -1,0 +1,10 @@
+const router = require('express').Router()
+const auth = require('../middlewares/auth')
+const { getExpenses, createExpense, deleteExpense, getStats, getMonthly } = require('../controllers/expenseController')
+router.use(auth)
+router.get('/', getExpenses)
+router.post('/', createExpense)
+router.delete('/:id', deleteExpense)
+router.get('/stats', getStats)
+router.get('/monthly', getMonthly)
+module.exports = router
