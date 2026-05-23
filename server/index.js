@@ -9,7 +9,18 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
-app.use('/uploads', express.static('uploads'))
+const path = require('path')
+const fs = require('fs')
+
+const uploadsPath = process.env.VERCEL
+  ? '/tmp/uploads'
+  : path.join(__dirname, 'uploads')
+
+if (process.env.VERCEL && !fs.existsSync(uploadsPath)) {
+  fs.mkdirSync(uploadsPath, { recursive: true })
+}
+
+app.use('/uploads', express.static(uploadsPath))
 
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'))
@@ -30,8 +41,11 @@ const PORT = process.env.PORT || 5000
 const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/hostelmate'
 
 mongoose.connect(MONGO_URI)
-  .then(() => {
-    console.log('✅ MongoDB connected')
-    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`))
-  })
-  .catch(err => { console.error('MongoDB error:', err); process.exit(1) })
+  .then(() => console.log('✅ MongoDB connected'))
+  .catch(err => { console.error('MongoDB error:', err) })
+
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`))
+}
+
+module.exports = app
