@@ -286,11 +286,25 @@ Built using:
 Add screenshots here for:
 
 * Login Page
+  <img width="1912" height="882" alt="image" src="https://github.com/user-attachments/assets/e6fcb04e-02be-4208-b35e-3665535c01a9" />
+
 * Dashboard
+  <img width="1913" height="882" alt="image" src="https://github.com/user-attachments/assets/34f702f8-b01b-488c-b1d2-c7d73e8ea327" />
+
 * Expense Management
+  <img width="1920" height="876" alt="image" src="https://github.com/user-attachments/assets/c2aeff6e-bac9-47b7-b9db-d3bdb4987f9d" />
+
 * Budget Planner
+  <img width="1920" height="886" alt="image" src="https://github.com/user-attachments/assets/0637ba80-2c0b-4844-833c-92c58e3f5f9a" />
+
 * AI Insights
+  <img width="1915" height="881" alt="image" src="https://github.com/user-attachments/assets/7e681785-1f28-4cae-88a3-5a81c45ad724" />
+
 * Mobile Responsive Design
+<img width="357" height="768" alt="image" src="https://github.com/user-attachments/assets/3ff7a9f8-68e8-40db-9e86-c5e4b19dc55a" />
+<img width="358" height="773" alt="image" src="https://github.com/user-attachments/assets/31e6f50a-0767-4f93-8d02-ef055e7dbf28" />
+<img width="357" height="775" alt="image" src="https://github.com/user-attachments/assets/02c27079-393b-402a-b434-7d58cd948da8" />
+<img width="363" height="773" alt="image" src="https://github.com/user-attachments/assets/695b5fb4-1de1-4a6c-b4b5-ae932582b935" />
 
 ---
 
