@@ -24,7 +24,7 @@ export default function Profile() {
   const handleAvatarUpload = async (e) => {
     const file = e.target.files?.[0]
     if (!file) return
-    if (!file.type.startsWith('image/')) return toast.error('Only image files allowed')
+    if (!['image/jpeg', 'image/png', 'image/jpg'].includes(file.type)) return toast.error('Only PNG and JPG images allowed')
     if (file.size > 5 * 1024 * 1024) return toast.error('File too large (max 5MB)')
     setUploading(true)
     try {
@@ -64,7 +64,7 @@ export default function Profile() {
               className="absolute -bottom-1 -right-1 w-8 h-8 bg-white rounded-xl border border-surface-200 flex items-center justify-center shadow-sm hover:shadow-md transition-all hover:scale-105 disabled:opacity-50">
               {uploading ? <Upload size={13} className="text-brand-500 animate-pulse" /> : <Camera size={13} className="text-surface-500" />}
             </button>
-            <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handleAvatarUpload} />
+            <input ref={fileRef} type="file" accept=".png,.jpg,.jpeg" className="hidden" onChange={handleAvatarUpload} />
           </div>
           <div>
             <h2 className="font-bold text-surface-900 text-lg">{user?.name}</h2>

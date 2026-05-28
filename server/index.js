@@ -29,6 +29,14 @@ app.use('/api/groups', require('./routes/groupRoutes'))
 app.use('/api/budget', require('./routes/budgetRoutes'))
 app.use('/api/ai', require('./routes/aiRoutes'))
 
+app.get('/', (req, res) => {
+  res.json({
+    service: 'HostelMate API',
+    status: 'running',
+    client: 'http://localhost:5173',
+    docs: '/api/health'
+  })
+})
 app.get('/api/health', (req, res) => res.json({ status: 'ok', service: 'HostelMate API' }))
 
 // Error handler
@@ -40,12 +48,16 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000
 const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/hostelmate'
 
-mongoose.connect(MONGO_URI)
-  .then(() => console.log('✅ MongoDB connected'))
+mongoose.connect(MONGO_URI, {
+  serverSelectionTimeoutMS: 120000,
+  bufferTimeoutMS: 120000,
+})
+  .then(() => {
+    console.log('✅ MongoDB connected')
+    if (!process.env.VERCEL) {
+      app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`))
+    }
+  })
   .catch(err => { console.error('MongoDB error:', err) })
-
-if (!process.env.VERCEL) {
-  app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`))
-}
 
 module.exports = app

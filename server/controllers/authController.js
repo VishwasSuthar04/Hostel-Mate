@@ -18,8 +18,9 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, uploadsPath),
   filename: (req, file, cb) => cb(null, `avatar-${req.user._id}-${Date.now()}${path.extname(file.originalname)}`),
 })
+const allowedMimes = ['image/jpeg', 'image/png', 'image/jpg']
 const upload = multer({ storage, limits: { fileSize: 5 * 1024 * 1024 }, fileFilter: (req, file, cb) => {
-  if (!file.mimetype.startsWith('image/')) return cb(new Error('Only images allowed'), false)
+  if (!allowedMimes.includes(file.mimetype)) return cb(new Error('Only PNG and JPG images allowed'), false)
   cb(null, true)
 } })
 
